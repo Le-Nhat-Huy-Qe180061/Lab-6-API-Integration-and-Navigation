@@ -32,6 +32,7 @@ const StudentList = () => {
     const [sortField, setSortField] = useState('name');
     const [sortDirection, setSortDirection] = useState('asc');
 
+    // Get List Student
     const fetchStudents = async () => {
         try {
             const response = await axios.get(
@@ -59,6 +60,7 @@ const StudentList = () => {
         }, 1500);
     };
 
+    // Xóa Student
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this student?')) {
             try {
@@ -73,6 +75,7 @@ const StudentList = () => {
         }
     };
 
+    // Update Student
     const handleStatusUpdate = async (student) => {
         try {
             await axios.put(
