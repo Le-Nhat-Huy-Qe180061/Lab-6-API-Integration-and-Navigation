@@ -94,13 +94,12 @@ const StudentDetail = () => {
                             <PersonBadge size={24} className='text-primary' />
                             <h4 className='mb-0'>Student Details</h4>
                         </div>
-                        <Link to='/'>
+                        <Link to='/' className='text-decoration-none'>
                             <Button
                                 variant='outline-secondary'
-                                className='d-flex align-items-center gap-2'
+                                className='rounded-pill shadow-sm'
                             >
-                                <ArrowLeft size={18} />
-                                Back to List
+                                Back to list student
                             </Button>
                         </Link>
                     </div>
@@ -228,18 +227,26 @@ const StudentDetail = () => {
                         </Col>
                     </Row>
 
-                    <div className='d-flex gap-2 mt-4'>
-                        <Link to={`/edit-student/${student._id}`}>
+                    <div className='d-flex gap-3 mt-4'>
+                        <Link
+                            to={`/edit-student/${student._id}`}
+                            className='text-decoration-none'
+                        >
                             <Button
                                 variant='warning'
-                                className='d-flex align-items-center gap-2'
+                                className='d-flex align-items-center gap-2 rounded-pill shadow-sm'
                             >
                                 <Pencil size={18} />
                                 Edit Student
                             </Button>
                         </Link>
-                        <Link to='/'>
-                            <Button variant='light'>Cancel</Button>
+                        <Link to='/' className='text-decoration-none'>
+                            <Button
+                                variant='outline-secondary'
+                                className='rounded-pill shadow-sm'
+                            >
+                                Cancel
+                            </Button>
                         </Link>
                     </div>
                 </Card.Body>

@@ -101,9 +101,9 @@ const StudentForm = ({ mode = 'add' }) => {
                 showSuccessMessage('Student created successfully!');
             }
 
-            setTimeout(() => {
-                navigate('/');
-            }, 1500);
+            // setTimeout(() => {
+            //     navigate('/');
+            // }, 1500);
         } catch (err) {
             console.error('Error details:', err.response || err.message);
             setError(
@@ -156,13 +156,12 @@ const StudentForm = ({ mode = 'add' }) => {
                                 ? 'Edit Student'
                                 : 'Add New Student'}
                         </h4>
-                        <Link to='/'>
+                        <Link to='/' className='text-decoration-none'>
                             <Button
                                 variant='outline-secondary'
-                                className='d-flex align-items-center gap-2'
+                                className='rounded-pill shadow-sm'
                             >
-                                <ArrowLeft size={18} />
-                                Back to List
+                                Back to list student
                             </Button>
                         </Link>
                     </div>
@@ -260,11 +259,11 @@ const StudentForm = ({ mode = 'add' }) => {
                             </Form.Text>
                         </Form.Group>
 
-                        <div className='d-flex gap-2'>
+                        <div className='d-flex gap-3 mt-4'>
                             <Button
                                 variant='primary'
                                 type='submit'
-                                className='d-flex align-items-center gap-2'
+                                className='d-flex align-items-center gap-2 rounded-pill shadow-sm'
                                 disabled={loading}
                             >
                                 {loading && (
@@ -273,8 +272,13 @@ const StudentForm = ({ mode = 'add' }) => {
                                 <Save size={18} />
                                 {mode === 'edit' ? 'Update' : 'Create'} Student
                             </Button>
-                            <Link to='/'>
-                                <Button variant='light'>Cancel</Button>
+                            <Link to='/' className='text-decoration-none'>
+                                <Button
+                                    variant='outline-secondary'
+                                    className='rounded-pill shadow-sm'
+                                >
+                                    Cancel
+                                </Button>
                             </Link>
                         </div>
                     </Form>
