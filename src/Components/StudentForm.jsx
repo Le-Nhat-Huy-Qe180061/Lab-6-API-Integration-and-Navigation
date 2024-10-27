@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import {
     Button,
@@ -16,7 +16,6 @@ import {
     PersonFill,
     CodeSquare,
     CheckCircleFill,
-    ArrowLeft,
     Save
 } from 'react-bootstrap-icons';
 
@@ -26,19 +25,21 @@ const StudentForm = ({ mode = 'add' }) => {
         name: '',
         isActive: true
     });
+
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [loading, setLoading] = useState(false);
     const [validated, setValidated] = useState(false);
-    const navigate = useNavigate();
+
     const { id } = useParams();
 
     useEffect(() => {
         if (mode === 'edit' && id) {
             fetchStudentData();
         }
-    }, [mode, id]);
+    }, [mode]);
 
+    // Get List Student
     const fetchStudentData = async () => {
         setLoading(true);
         try {
@@ -53,6 +54,7 @@ const StudentForm = ({ mode = 'add' }) => {
         }
     };
 
+    // Validation
     const validateForm = () => {
         if (mode === 'add' && !formData.studentCode.trim()) {
             setError('Student Code is required');
@@ -85,6 +87,7 @@ const StudentForm = ({ mode = 'add' }) => {
         setLoading(true);
         try {
             if (mode === 'edit') {
+                //Edit Student
                 await axios.put(
                     `https://student-api-nestjs.onrender.com/students/${id}`,
                     {
@@ -93,7 +96,8 @@ const StudentForm = ({ mode = 'add' }) => {
                     }
                 );
                 showSuccessMessage('Student updated successfully!');
-            } else {
+            } // Add Student
+            else {
                 await axios.post(
                     'https://student-api-nestjs.onrender.com/students',
                     formData
@@ -118,6 +122,7 @@ const StudentForm = ({ mode = 'add' }) => {
         }
     };
 
+    // Thời gian thông báo hiện
     const showSuccessMessage = (message) => {
         setSuccess(message);
         setTimeout(() => {
@@ -135,6 +140,7 @@ const StudentForm = ({ mode = 'add' }) => {
         setError(null);
     };
 
+    // loading chờ cập nhập vào data
     if (loading && mode === 'edit') {
         return (
             <Container
@@ -167,6 +173,7 @@ const StudentForm = ({ mode = 'add' }) => {
                     </div>
                 </Card.Header>
                 <Card.Body className='p-4'>
+                    {/* Thông báo lỗi  */}
                     {error && (
                         <Alert
                             variant='danger'
@@ -175,6 +182,7 @@ const StudentForm = ({ mode = 'add' }) => {
                             {error}
                         </Alert>
                     )}
+                    {/* Thông báo thành công  */}
                     {success && (
                         <Alert
                             variant='success'
